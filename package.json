@@ -1,0 +1,15 @@
+{
+  "name": "mern-todo-pro",
+  "private": true,
+  "version": "2.0.0",
+  "scripts": {
+    "install-all": "npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "mongodb": "^7.5.0"
+  }
+}
