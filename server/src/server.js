@@ -1,5 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -31,7 +32,20 @@ app.use(cors({
 app.use(express.json({ limit: "10mb" }));
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
 
-// API Routes
+// Root & Health check API routes
+app.get("/", (_req, res) => {
+  res.json({
+    status: "ok",
+    service: "mern-todo-pro-api",
+    message: "Welcome to MERN Todo Pro API 🚀",
+    endpoints: {
+      health: "/api/health",
+      auth: "/api/auth",
+      todos: "/api/todos"
+    }
+  });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({
     status: "ok",
@@ -44,14 +58,24 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/todos", todoRoutes);
 
-// Production Static Serving
+// Static client serving (if frontend build dist directory exists)
 if (process.env.NODE_ENV === "production") {
   const clientDist = path.resolve(__dirname, "../../client/dist");
-  app.use(express.static(clientDist));
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(clientDist, "index.html"));
-  });
+  if (fs.existsSync(clientDist)) {
+    app.use(express.static(clientDist));
+    app.use((req, res, next) => {
+      if (req.method === "GET" && !req.path.startsWith("/api")) {
+        return res.sendFile(path.join(clientDist, "index.html"));
+      }
+      next();
+    });
+  }
 }
+
+// 404 Handler for unmatched routes
+app.use((_req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
 
 // Global Error Handler
 app.use((err, _req, res, _next) => {
