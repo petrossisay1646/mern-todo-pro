@@ -1,124 +1,143 @@
-# 🚀 MERN Todo Pro
+# 🚀 MERN Todo Pro — Ultra Productivity Suite
 
-A modern, full-stack Todo Management application built with the **MERN Stack**.
+A modern, full-stack Task & Productivity Management application built with the **MERN Stack** (MongoDB, Express, React 19, Node.js) and Vite.
 
-MERN Todo Pro goes beyond a basic Todo List by providing JWT authentication, dashboard statistics, priorities, categories, due dates, search, dark mode, reminders, and a responsive modern interface.
+MERN Todo Pro transforms task management with **Multi-View Workspaces (List, Kanban Board, Focus Pomodoro, and Analytics)**, subtasks checklist, custom tags, daily completion streaks, bulk operations, JSON backup import/export, keyboard shortcuts, sound chimes, and automatic local MongoDB development support.
+
+---
+
+## 🌐 Live Deployments
+
+- **Frontend (Vercel)**: https://mern-todo-pro.vercel.app
+- **Backend API (Render)**: https://mern-todo-pro-api.onrender.com
 
 ---
 
-## 🌐 Live Demo
-
-### Frontend
-🔗 https://mern-todo-pro.vercel.app
-
-### Backend API
-🔗 https://mern-todo-pro-api.onrender.com
-
----
 ## ✨ Features
 
-- 🔐 JWT Authentication
-- 📝 User Registration & Login
-- 🔒 Protected Routes
-- 📊 Dashboard Statistics
-- ✅ Create, Update & Delete Tasks
-- ✔️ Mark Tasks as Completed
-- 🎯 Task Priorities
-- 📅 Due Dates
-- 🏷️ Task Categories
-- 🔍 Search Tasks
-- 📌 Task Status Management
-- 🌙 Dark Mode
-- 🔔 Task Reminders
-- 🔊 5-Minute Reminder Notification
-- 📱 Responsive Design
-- ⚡ React + Vite
-- ☁️ MongoDB Atlas
-- 🚀 Render Backend
-- ▲ Vercel Frontend
+### 🎯 Multi-View Productivity
+- 📋 **List View**: Rich task catalog with smart sorting (pinned first, due dates first), interactive inline subtasks, tag chips, and search.
+- 📊 **Kanban Board**: Drag-and-drop or stage-shift task flow across *To Do*, *In Progress*, and *Completed* columns with stage counters.
+- 🍅 **Focus Mode (Pomodoro Timer)**: 25-min focus sessions, 5-min short breaks, 15-min long breaks, audio chimes, and direct task binding with one-click completion.
+- 📈 **Analytics & Streaks**: 7-day completion activity bar chart, daily target goal ring, consecutive day streak tracker (🔥), and priority distribution.
+
+### ⚡ Power User Tools
+- ☑️ **Subtasks / Checklist**: Break down complex tasks with progress percentage indicators.
+- 🏷️ **Tagging System**: Add hashtags (`#feature`, `#urgent`, `#dev`) with one-click filtering.
+- 📌 **Pin to Top**: Keep critical tasks pinned above everything else.
+- 📦 **Bulk Actions**: Select multiple tasks for batch completion, batch deletion, or mass priority updates.
+- 💾 **Data Backup & Restore**: Export all tasks to JSON format and import tasks anytime.
+- ⌨️ **Keyboard Navigation**:
+  - `N` — New task modal
+  - `/` — Focus search
+  - `1` — List View
+  - `2` — Kanban Board
+  - `3` — Pomodoro Focus Mode
+  - `4` — Analytics
+  - `D` — Toggle Dark/Light mode
+  - `Esc` — Close modals & clear selection
+
+### 🔐 Auth, Profile & Settings
+- 🛡️ JWT Authentication with bcrypt password hashing
+- 🎨 Customizable user avatar color themes
+- 🎯 Daily target goal setting & custom Pomodoro duration
+- 🔒 Secure password change
+
+### 🔊 Audio & Notifications
+- 🔔 5-minute deadline reminder popups with Web Audio sound alerts
+- 🎵 Subtle completion chime when completing tasks
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-
-- React
-- Vite
-- React Router
-- Axios
-- CSS
-- React Icons
-- Context API
+- **React 19** + **Vite 7**
+- **React Router 7**
+- **Axios**
+- **Lucide React Icons**
+- **Web Audio API**
+- **CSS3 Design Tokens & Glassmorphism**
 
 ### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcrypt
-- dotenv
-- CORS
-- Helmet
-- Morgan
-
-### Deployment
-
-- GitHub
-- MongoDB Atlas
-- Render
-- Vercel
-
-- ---
-
-## 📸 Screenshots
-
-### 📊 Dashboard — Mobile
-![Todo Pro Dashboard](./screenshots/dashboard-mobile.jpg)
-
-### 🔐 Login
-![Todo Pro Login](./screenshots/login.jpg)
-
-### 📝 Create Task
-![Create Task](./screenshots/create-task.jpg)
-
-### 👤 Register
-![Todo Pro Register](./screenshots/register.jpg)
-
-### ☀️ Light Mode & Navigation
-![Todo Pro Light Mode Sidebar](./screenshots/sidebar-light-mode.jpg)
-
+- **Node.js** + **Express 5**
+- **MongoDB** + **Mongoose 8**
+- **MongoDB Memory Server** (instant zero-config local dev fallback)
+- **JSON Web Tokens (JWT)**
+- **bcryptjs**
+- **Helmet, CORS, Morgan**
 
 ---
 
-## 🌐 Production Architecture
+## 🚀 Getting Started Locally
 
-```text
-                    🌍 USER
-                       │
-                       ▼
-              ┌─────────────────┐
-              │     VERCEL      │
-              │                 │
-              │ React + Vite    │
-              │ Todo Frontend   │
-              └────────┬────────┘
-                       │
-                       │ HTTPS API
-                       ▼
-              ┌─────────────────┐
-              │     RENDER      │
-              │                 │
-              │ Node.js         │
-              │ Express.js      │
-              │ JWT API         │
-              └────────┬────────┘
-                       │
-                       ▼
-              ┌─────────────────┐
-              │ MONGODB ATLAS   │
-              │                 │
-              │ Users + Todos   │
-              └─────────────────┘
+### 1. Clone the repository
+```bash
+git clone https://github.com/petrossisay1646/mern-todo-pro.git
+cd mern-todo-pro
+```
+
+### 2. Install dependencies
+```bash
+npm install
+npm --prefix server install
+npm --prefix client install
+```
+
+### 3. Configure environment (Optional)
+The backend automatically falls back to an in-memory MongoDB database for development if no `MONGO_URI` is provided!
+
+To connect to your own MongoDB Atlas:
+Create `server/.env`:
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/mern-todo-pro?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret_key
+CLIENT_URL=http://localhost:5173
+```
+
+### 4. Run the application
+```bash
+# Start both client and server concurrently:
+npm run dev
+
+# Or start individually:
+npm --prefix server run dev
+npm --prefix client run dev
+```
+
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:5000
+- **API Health**: http://localhost:5000/api/health
+
+---
+
+## ☁️ Deployment Guide
+
+### Deploying Backend on Render
+1. Create a new **Web Service** on [Render](https://render.com).
+2. Connect your GitHub repository.
+3. Configure settings:
+   - **Root Directory**: `server`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+4. Add Environment Variables:
+   - `NODE_ENV` = `production`
+   - `MONGO_URI` = `mongodb+srv://<user>:<pwd>@cluster0.mongodb.net/mern-todo-pro?retryWrites=true&w=majority`
+   - `JWT_SECRET` = `<your-secure-secret>`
+   - `CLIENT_URL` = `https://<your-vercel-domain>.vercel.app`
+
+### Deploying Frontend on Vercel
+1. Import the repository on [Vercel](https://vercel.com).
+2. Configure settings:
+   - **Root Directory**: `client`
+   - **Framework Preset**: `Vite`
+3. Add Environment Variable:
+   - `VITE_API_URL` = `https://<your-render-service>.onrender.com/api`
+4. Deploy!
+
+---
+
+## 📄 License
+MIT License. Built by Petros Sisay.
