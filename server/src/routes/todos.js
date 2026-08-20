@@ -281,6 +281,7 @@ router.get("/", async (req, res) => {
     if (sortBy === "dueDate") {
       sortOption = { dueDate: 1, pinned: -1, createdAt: -1 };
     } else if (sortBy === "priority") {
+      
       // Urgent / high first
       sortOption = { priority: 1, dueDate: 1 };
     } else if (sortBy === "title") {
@@ -288,6 +289,7 @@ router.get("/", async (req, res) => {
     } else if (sortBy === "createdAt") {
       sortOption = { createdAt: -1 };
     } else {
+
       // Default smart sort: pinned first, uncompleted first, due dates first, newest first
       sortOption = { pinned: -1, completed: 1, dueDate: 1, createdAt: -1 };
     }

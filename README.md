@@ -9,7 +9,6 @@ MERN Todo Pro transforms task management with **Multi-View Workspaces (List, Kan
 ## 🌐 Live Deployments
 
 - **Frontend (Vercel)**: https://mern-todo-pro.vercel.app
-- **Backend API (Render)**: https://mern-todo-pro-api.onrender.com
 
 ---
 
@@ -110,33 +109,6 @@ npm --prefix client run dev
 - **Frontend**: http://localhost:5173
 - **Backend**: http://localhost:5000
 - **API Health**: http://localhost:5000/api/health
-
----
-
-## ☁️ Deployment Guide
-
-### Deploying Backend on Render
-1. Create a new **Web Service** on [Render](https://render.com).
-2. Connect your GitHub repository.
-3. Configure settings:
-   - **Root Directory**: `server`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-4. Add Environment Variables:
-   - `NODE_ENV` = `production`
-   - `MONGO_URI` = `mongodb+srv://<user>:<pwd>@cluster0.mongodb.net/mern-todo-pro?retryWrites=true&w=majority`
-   - `JWT_SECRET` = `<your-secure-secret>`
-   - `CLIENT_URL` = `https://<your-vercel-domain>.vercel.app`
-
-### Deploying Frontend on Vercel
-1. Import the repository on [Vercel](https://vercel.com).
-2. Configure settings:
-   - **Root Directory**: `client`
-   - **Framework Preset**: `Vite`
-3. Add Environment Variable:
-   - `VITE_API_URL` = `https://<your-render-service>.onrender.com/api`
-4. Deploy!
-
 ---
 
 ## 📄 License
